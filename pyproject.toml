@@ -11,6 +11,8 @@ grpcio = "^1.62.1"
 grpcio-tools = "^1.62.1"
 click-extra = "^4.7.4"
 
+[tool.poetry.scripts]
+grpc = "scripts.grpc:grpc_cli"
 
 [build-system]
 requires = ["poetry-core"]
