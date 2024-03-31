@@ -1,0 +1,21 @@
+syntax = "proto3";
+package user;
+
+enum OAuthProvider {
+  OAUTH_PROVIDER_UNSPECIFIED = 0;
+  OAUTH_PROVIDER_GITHUB = 1;
+}
+
+message OAuthLoginRequest {
+  string code = 1;
+  OAuthProvider provider = 2;
+}
+
+message OAuthLoginResponse {
+  string access_token = 1;
+  string token_type = 2;
+}
+
+service User {
+  rpc oauth_login(OAuthLoginRequest) returns (OAuthLoginResponse);
+}
