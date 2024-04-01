@@ -8,11 +8,13 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 grpcio = "^1.62.1"
-grpcio-tools = "^1.62.1"
-click-extra = "^4.7.4"
 
 [tool.poetry.scripts]
 grpc = "scripts.grpc:grpc_cli"
+
+[tool.poetry.group.dev.dependencies]
+click-extra = "^4.7.4"
+grpcio-tools = "^1.62.1"
 
 [build-system]
 requires = ["poetry-core"]
