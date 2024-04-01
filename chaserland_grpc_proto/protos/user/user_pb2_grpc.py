@@ -6,7 +6,8 @@ from user import user_pb2 as user_dot_user__pb2
 
 
 class UserStub(object):
-    """Missing associated documentation comment in .proto file."""
+    """User service
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -22,10 +23,16 @@ class UserStub(object):
 
 
 class UserServicer(object):
-    """Missing associated documentation comment in .proto file."""
+    """User service
+    """
 
     def oauth_login(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """
+        OAuth login
+
+        args: OAuthLoginRequest
+        returns: OAuthLoginResponse
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -46,7 +53,8 @@ def add_UserServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class User(object):
-    """Missing associated documentation comment in .proto file."""
+    """User service
+    """
 
     @staticmethod
     def oauth_login(request,
