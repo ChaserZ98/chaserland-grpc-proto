@@ -7,15 +7,22 @@ enum OAuthProvider {
 }
 
 message OAuthLoginRequest {
-  string code = 1;
-  OAuthProvider provider = 2;
+  string code = 1; // OAuth authorization code from the provider
+  OAuthProvider provider = 2; // OAuth provider
 }
 
 message OAuthLoginResponse {
-  string access_token = 1;
-  string token_type = 2;
+  string access_token = 1; // Access token for the user
+  string token_type = 2; // Token type (e.g. "Bearer")
 }
 
+// User service
 service User {
+  /*
+    OAuth login
+
+    args: OAuthLoginRequest
+    returns: OAuthLoginResponse
+  */
   rpc oauth_login(OAuthLoginRequest) returns (OAuthLoginResponse);
 }
