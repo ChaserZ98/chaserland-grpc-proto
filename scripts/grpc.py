@@ -84,6 +84,22 @@ def create(proto_file, proto_path, python_out, grpc_python_out, pyi_out):
     fix_import_issue(proto_file, grpc_python_out)
     click.secho("Done", fg="green")
 
+    click.echo(
+        f"Formatting generated files in {click.style(OUT_DIR, fg='yellow')}...",
+    )
+    # ruff format generated files
+    command = [
+        "ruff",
+        "check",
+        "--no-cache",
+        "--fix",
+        "--select",
+        "I",
+        OUT_DIR,
+    ]
+    res = subprocess.run(command)
+    click.secho("Done", fg="green")
+
 
 def fix_import_issue(proto_file: str, grpc_python_out: str) -> None:
     filename = os.path.basename(proto_file).replace(".proto", "")
