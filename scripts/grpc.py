@@ -1,4 +1,5 @@
 import os
+import re
 import subprocess
 import sys
 
@@ -75,6 +76,46 @@ def create(proto_file, proto_path, python_out, grpc_python_out, pyi_out):
         return
 
     click.secho("Done", fg="green")
+
+    click.echo(
+        f"Fixing import issue for {click.style(os.path.basename(proto_file).replace('.proto', '_pb2_grpc.py'), fg='yellow')}...",
+        nl=False,
+    )
+    fix_import_issue(proto_file, grpc_python_out)
+    click.secho("Done", fg="green")
+
+    click.echo(
+        f"Formatting generated files in {click.style(OUT_DIR, fg='yellow')}...",
+    )
+    # ruff format generated files
+    command = [
+        "ruff",
+        "check",
+        "--no-cache",
+        "--fix",
+        "--select",
+        "I",
+        OUT_DIR,
+    ]
+    res = subprocess.run(command)
+    click.secho("Done", fg="green")
+
+
+def fix_import_issue(proto_file: str, grpc_python_out: str) -> None:
+    filename = os.path.basename(proto_file).replace(".proto", "")
+    # regular expression to match the import statement "from filename import ..."
+    import_statement = rf"from {filename}"
+    # replace with "from . import ..."
+    with open(
+        os.path.join(grpc_python_out, proto_file.replace(".proto", "_pb2_grpc.py")), "r"
+    ) as f:
+        content = f.read()
+        content = re.sub(import_statement, f"from .", content)
+
+    with open(
+        os.path.join(grpc_python_out, proto_file.replace(".proto", "_pb2_grpc.py")), "w"
+    ) as f:
+        f.write(content)
 
 
 @grpc_cli.command(help="Clean generated Python files")
