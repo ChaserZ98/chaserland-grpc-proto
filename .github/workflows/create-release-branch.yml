@@ -74,6 +74,6 @@ jobs:
           OUTPUT: CHANGELOG.md
       - name: Commit and push changes
         run: |
-          git add pyproject.toml CHANGELOG.md
+          git add .
           git commit -am "🎉 release: $NEXT_VERSION"
           git push origin release/$NEXT_VERSION
