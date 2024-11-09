@@ -69,7 +69,7 @@ jobs:
         with:
           version: $NEXT_VERSION
           config: cliff.toml
-          args: --verbose
+          args: --verbose --output CHANGELOG.md
         env:
           OUTPUT: CHANGELOG.md
       - name: Commit and push changes
