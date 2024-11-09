@@ -1,16 +1,16 @@
-name: tag
-
+name: Create Tag
+run-name: "${{github.actor}} is trying to create a tag"
 on:
   pull_request:
-    types:
-      - closed
     branches:
       - main
   workflow_dispatch:
 
 jobs:
   tag:
-    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    if: startsWith(github.head_ref, 'release/')
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,8 +19,8 @@ jobs:
         uses: SebRollen/toml-action@v1.2.0
         id: read_toml
         with:
-          file: 'pyproject.toml'
-          field: 'tool.poetry.version'
+          file: "pyproject.toml"
+          field: "tool.poetry.version"
       - name: Show branch
         run: echo "Current branch ${{ github.ref_name }}"
       - name: Show version
@@ -33,4 +33,4 @@ jobs:
           release_branches: main
           default_bump: false
           custom_tag: ${{ steps.read_toml.outputs.value }}
-          tag_prefix: 'v'
+          tag_prefix: "v"
