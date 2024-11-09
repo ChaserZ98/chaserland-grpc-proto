@@ -41,7 +41,7 @@ jobs:
       - name: Get next version
         run: |
           if [[ $SEMVER_TYPE == "premajor" || $SEMVER_TYPE == "preminor" || $SEMVER_TYPE == "prepatch" ]]; then
-            if [[ $IS_NEXT_PHASE == "true"]]; then
+            if [[ $IS_NEXT_PHASE == "true" ]]; then
               BUMP_COMMAND="poetry version $SEMVER_TYPE -s --dry-run --next-phase"
             else
               BUMP_COMMAND="poetry version $SEMVER_TYPE -s --dry-run"
