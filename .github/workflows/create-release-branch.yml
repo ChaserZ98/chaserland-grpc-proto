@@ -49,7 +49,7 @@ jobs:
           else
             BUMP_COMMAND="poetry version $SEMVER_TYPE -s"
           fi
-          NEXT_VERSION=$(eval $BUMP_COMMAND)
+          NEXT_VERSION=v$(eval $BUMP_COMMAND)
           echo "The next version is $NEXT_VERSION"
           echo "BUMP_COMMAND=$BUMP_COMMAND" >> $GITHUB_ENV
           echo "NEXT_VERSION=$NEXT_VERSION" >> $GITHUB_ENV
@@ -69,9 +69,10 @@ jobs:
         with:
           version: $NEXT_VERSION
           config: cliff.toml
-          args: --verbose --output CHANGELOG.md
+          args: --verbose
         env:
           OUTPUT: CHANGELOG.md
+          GITHUB_REPO: ${{github.repository}}
       - name: Commit and push changes
         run: |
           git add .
