@@ -2,13 +2,15 @@ name: Create Tag
 run-name: "${{github.actor}} is trying to create a tag"
 on:
   pull_request:
+    types: 
+      - closed
     branches:
       - main
   workflow_dispatch:
 
 jobs:
   tag:
-    if: startsWith(github.head_ref, 'release/')
+    if: startsWith(github.head_ref, 'release/') && github.event.pull_request.merged == true
     permissions:
       contents: write
     runs-on: ubuntu-latest

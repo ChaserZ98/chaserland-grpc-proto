@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "chaserland-grpc-proto"
-version = "0.2.0"
+version = "0.2.1"
 description = "Chaserland gRPC proto definitions"
 authors = ["ChaserZ98 <feiyuzheng98@gmail.com>"]
 readme = "README.md"
