@@ -67,9 +67,8 @@ jobs:
         uses: orhun/git-cliff-action@v4
         id: git-cliff
         with:
-          version: $NEXT_VERSION
           config: cliff.toml
-          args: --verbose
+          args: --verbose --tag $NEXT_VERSION
         env:
           OUTPUT: CHANGELOG.md
           GITHUB_REPO: ${{github.repository}}
