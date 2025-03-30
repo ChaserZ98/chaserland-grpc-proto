@@ -2,7 +2,7 @@ name: Create Tag
 run-name: "${{github.actor}} is trying to create a tag"
 on:
   pull_request:
-    types: 
+    types:
       - closed
     branches:
       - main
@@ -17,22 +17,26 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Tag
-        uses: SebRollen/toml-action@v1.2.0
-        id: read_toml
-        with:
-          file: "pyproject.toml"
-          field: "tool.poetry.version"
+      - name: Get version
+        id: get-version
+        run: |
+          import tomllib
+          import os
+          with open("pyproject.toml", "rb") as f:
+            data = tomllib.load(f)
+          version = data["project"]["version"]
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+            f.write(f"version={version}")
       - name: Show branch
         run: echo "Current branch ${{ github.ref_name }}"
       - name: Show version
-        run: echo "Current version ${{ steps.read_toml.outputs.value }}"
+        run: echo "Current version ${{ steps.get-version.outputs.version }}"
       - name: Create tag
-        id: create_tag
+        id: create-tag
         uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           release_branches: main
           default_bump: false
-          custom_tag: ${{ steps.read_toml.outputs.value }}
+          custom_tag: ${{ steps.get-version.outputs.version }}
           tag_prefix: "v"
