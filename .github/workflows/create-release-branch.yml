@@ -75,5 +75,5 @@ jobs:
       - name: Commit and push changes
         run: |
           git add pyproject.toml CHANGELOG.md
-          git commit -am "🎉 release: $NEXT_VERSION"
-          git push origin release/$NEXT_VERSION
+          git commit -m "🚀 release: $NEXT_VERSION"
+          git push -u origin release/$NEXT_VERSION
