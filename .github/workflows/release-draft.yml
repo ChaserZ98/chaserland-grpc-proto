@@ -1,0 +1,53 @@
+name: Release Draft
+run-name: "Release Attempt: ${{github.event.pull_request.title}}"
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  tag:
+    if: startsWith(github.head_ref, 'release/')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Get version
+        id: get-version
+        run: |
+          import tomllib
+          import os
+          with open("pyproject.toml", "rb") as f:
+            data = tomllib.load(f)
+          version = data["project"]["version"]
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+            f.write(f"version={version}")
+      - name: Show branch
+        run: echo "Current branch ${{ github.ref_name }}"
+      - name: Show version
+        run: echo "Current version ${{ steps.get-version.outputs.version }}"
+      - name: Create release draft
+        id: create-release-draft
+        uses: actions/github-script@v7
+        env:
+          VERSION: ${{steps.get-version.outputs.version}}
+        with:
+          script: |
+            const { data } = await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: `v${process.env.VERSION}`,
+              name: `${process.env.VERSION}`,
+              body: "Fill this with latest changelog content",
+              draft: true,
+              prerelease: false
+            })
+            return { id: data.id, html_url: data.html_url }
+      - name: Release url
+        env:
+          RELEASE_URL: ${{fromJson(steps.create-release-draft.outputs.result).html_url}}
+        run: |
+          echo "Release url: ${RELEASE_URL}"
