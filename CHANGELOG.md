@@ -8,68 +8,81 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## 0.2.1 - 2024-11-09
 
 ### <!-- 01 -->✨ Feature
-- Update create release workflow to auto generate changelog output file and bump the project version ([#32](https://github.com/ChaserZ98/chaserland-grpc-proto/pull/32)) by @ChaserZ98 in [#32](https://github.com/ChaserZ98/chaserland-grpc-proto/pull/32)
-- Remove unnecessary files and dependencies, add git-cliff config and update workflow ([#31](https://github.com/ChaserZ98/chaserland-grpc-proto/pull/31)) by @ChaserZ98 in [#31](https://github.com/ChaserZ98/chaserland-grpc-proto/pull/31)
+
+-   Update create release workflow to auto generate changelog output file and bump the project version ([#32](https://github.com/ChaserZ98/chaserland-grpc-proto/pull/32)) by @ChaserZ98 in [#32](https://github.com/ChaserZ98/chaserland-grpc-proto/pull/32)
+-   Remove unnecessary files and dependencies, add git-cliff config and update workflow ([#31](https://github.com/ChaserZ98/chaserland-grpc-proto/pull/31)) by @ChaserZ98 in [#31](https://github.com/ChaserZ98/chaserland-grpc-proto/pull/31)
 
 ## 0.2.0 - 2024-04-02
 
 ### <!-- 01 -->✨ Feature
-- Add CI/CD block in changelog by @ChaserZ98
+
+-   Add CI/CD block in changelog by @ChaserZ98
 
 ### <!-- 09 -->🐎 CI/CD
-- Ci: Update tag workflow to create tag when triggerd manually or PR by @ChaserZ98
+
+-   Ci: Update tag workflow to create tag when triggerd manually or PR by @ChaserZ98
 
 ### <!-- 10 -->🐳 Miscellaneous Tasks
-- Bump project version to 0.2.0 by @ChaserZ98
+
+-   Bump project version to 0.2.0 by @ChaserZ98
 
 ## 0.1.1 - 2024-04-02
 
 ### <!-- 02 -->🐞 Bug Fixes
-- Fix typo by @ChaserZ98
+
+-   Fix typo by @ChaserZ98
 
 ### <!-- 10 -->🐳 Miscellaneous Tasks
-- Bump project version to 0.1.1 by @ChaserZ98
+
+-   Bump project version to 0.1.1 by @ChaserZ98
 
 ## 0.1.0 - 2024-04-02
 
 ### <!-- 00 -->🎉 Hello World !
-- Project initialization by @ChaserZ98
+
+-   Project initialization by @ChaserZ98
 
 ### <!-- 01 -->✨ Feature
-- Use ruff to lint generated python files by @ChaserZ98
-- Add generated python files from user.proto of user service by @ChaserZ98
-- Add user service proto file by @ChaserZ98
-- Add grpc cli script to create/clean proto-related python files by @ChaserZ98
-- Add release change log config by @ChaserZ98
-- Enable dependabot in github by @ChaserZ98
+
+-   Use ruff to lint generated python files by @ChaserZ98
+-   Add generated python files from user.proto of user service by @ChaserZ98
+-   Add user service proto file by @ChaserZ98
+-   Add grpc cli script to create/clean proto-related python files by @ChaserZ98
+-   Add release change log config by @ChaserZ98
+-   Enable dependabot in github by @ChaserZ98
 
 ### <!-- 02 -->🐞 Bug Fixes
-- Fix the grpc python import issue by replacing absolute import by relative import by @ChaserZ98
+
+-   Fix the grpc python import issue by replacing absolute import by relative import by @ChaserZ98
 
 ### <!-- 03 -->📃 Documentation
-- Add docs to user.proto generated stub and servicer by @ChaserZ98
-- Add comments to user.proto file by @ChaserZ98
+
+-   Add docs to user.proto generated stub and servicer by @ChaserZ98
+-   Add comments to user.proto file by @ChaserZ98
 
 ### <!-- 05 -->🦄 Refactor
-- Update user.proto generated files with new create workflow by @ChaserZ98
+
+-   Update user.proto generated files with new create workflow by @ChaserZ98
 
 ### <!-- 09 -->🐎 CI/CD
-- Add tag workflow by @ChaserZ98
+
+-   Add tag workflow by @ChaserZ98
 
 ### <!-- 10 -->🐳 Miscellaneous Tasks
-- Export requirements.txt from poetry by @ChaserZ98
-- Add ruff>=0.3.5 by @ChaserZ98
-- Move grpcio-tools back to project dependencies by @ChaserZ98
-- Move click-extra and grpcio-tools to dev dependencies by @ChaserZ98
-- Include grpc cli in poetry scripts by @ChaserZ98
-- Add click-extra>=4.7.4 by @ChaserZ98
-- Add grpcio-tools>=1.62.1 by @ChaserZ98
-- Add grpcio>=1.62.1 by @ChaserZ98
-- Include Python template in .gitignore by @ChaserZ98
-- Include VS Code template in .gitignore by @ChaserZ98
-- Include MacOS template in .gitignore by @ChaserZ98
-- Include Windows template in .gitignore by @ChaserZ98
-- Add .gitignore by @ChaserZ98
+
+-   Export requirements.txt from poetry by @ChaserZ98
+-   Add ruff>=0.3.5 by @ChaserZ98
+-   Move grpcio-tools back to project dependencies by @ChaserZ98
+-   Move click-extra and grpcio-tools to dev dependencies by @ChaserZ98
+-   Include grpc cli in poetry scripts by @ChaserZ98
+-   Add click-extra>=4.7.4 by @ChaserZ98
+-   Add grpcio-tools>=1.62.1 by @ChaserZ98
+-   Add grpcio>=1.62.1 by @ChaserZ98
+-   Include Python template in .gitignore by @ChaserZ98
+-   Include VS Code template in .gitignore by @ChaserZ98
+-   Include MacOS template in .gitignore by @ChaserZ98
+-   Include Windows template in .gitignore by @ChaserZ98
+-   Add .gitignore by @ChaserZ98
 
 ### Changed
 

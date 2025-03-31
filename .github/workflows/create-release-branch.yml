@@ -68,12 +68,12 @@ jobs:
         id: git-cliff
         with:
           config: cliff.toml
-          args: --verbose --tag $NEXT_VERSION
+          args: --verbose --unreleased --tag $NEXT_VERSION
         env:
           OUTPUT: CHANGELOG.md
           GITHUB_REPO: ${{github.repository}}
       - name: Commit and push changes
         run: |
           git add pyproject.toml CHANGELOG.md
-          git commit -am "🎉 release: $NEXT_VERSION"
-          git push origin release/$NEXT_VERSION
+          git commit -m "🚀 release: $NEXT_VERSION"
+          git push -u origin release/$NEXT_VERSION
