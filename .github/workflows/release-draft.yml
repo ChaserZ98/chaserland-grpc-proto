@@ -17,6 +17,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Get version
         id: get-version
+        shell: python
         run: |
           import tomllib
           import os
