@@ -15,6 +15,7 @@ on:
           - patch
           - prepatch
           - prerelease
+          - initial
         default: "patch"
       isNextPhase:
         description: "Whether this is a next phase release"
@@ -40,16 +41,20 @@ jobs:
       - uses: Gr1N/setup-poetry@v9
       - name: Get next version
         run: |
-          if [[ $SEMVER_TYPE == "premajor" || $SEMVER_TYPE == "preminor" || $SEMVER_TYPE == "prepatch" ]]; then
-            if [[ $IS_NEXT_PHASE == "true" ]]; then
-              BUMP_COMMAND="poetry version $SEMVER_TYPE -s --next-phase"
+          if [[ $SEMVER_TYPE == "initial" ]]; then
+            NEXT_VERSION=v0.1.0
+          else
+            if [[ $SEMVER_TYPE == "premajor" || $SEMVER_TYPE == "preminor" || $SEMVER_TYPE == "prepatch" ]]; then
+              if [[ $IS_NEXT_PHASE == "true" ]]; then
+                BUMP_COMMAND="poetry version $SEMVER_TYPE -s --next-phase"
+              else
+                BUMP_COMMAND="poetry version $SEMVER_TYPE -s"
+              fi
             else
               BUMP_COMMAND="poetry version $SEMVER_TYPE -s"
             fi
-          else
-            BUMP_COMMAND="poetry version $SEMVER_TYPE -s"
+            NEXT_VERSION=v$(eval $BUMP_COMMAND)
           fi
-          NEXT_VERSION=v$(eval $BUMP_COMMAND)
           echo "The next version is $NEXT_VERSION"
           echo "BUMP_COMMAND=$BUMP_COMMAND" >> $GITHUB_ENV
           echo "NEXT_VERSION=$NEXT_VERSION" >> $GITHUB_ENV
@@ -62,16 +67,26 @@ jobs:
           git reset --hard HEAD
           git checkout -b release/$NEXT_VERSION
       - name: Bump version
+        if: ${{ github.event.inputs.semverType != 'initial' }}
         run: eval $BUMP_COMMAND
       - name: Generate changelog
+        if: ${{github.event.inputs.semverType == 'initial'}}
+        id: git-cliff-generate
         uses: orhun/git-cliff-action@v4
-        id: git-cliff
         with:
           config: cliff.toml
           args: --verbose --unreleased --tag $NEXT_VERSION
         env:
           OUTPUT: CHANGELOG.md
-          GITHUB_REPO: ${{github.repository}}
+      - name: Prepend changelog
+        if: ${{github.event.inputs.semverType != 'initial'}}
+        uses: orhun/git-cliff-action@v4
+        id: git-cliff-prepend
+        with:
+          config: cliff.toml
+          args: --verbose --unreleased --tag $NEXT_VERSION --prepend CHANGELOG.md
+        env:
+          OUTPUT: ""
       - name: Commit and push changes
         run: |
           git add pyproject.toml CHANGELOG.md
