@@ -1,6 +1,6 @@
 [project]
 name = "chaserland-grpc-proto"
-version = "0.2.1"
+version = "0.3.0"
 description = "Chaserland gRPC proto definitions"
 authors = [{ name = "ChaserZ98", email = "feiyuzheng98@gmail.com" }]
 readme = "README.md"

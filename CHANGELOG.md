@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.0 - 2025-03-31
+
+### <!-- 09 -->🐎 CI/CD
+- Fix release-draft workflow ([#37](https://github.com/ChaserZ98/chaserland-grpc-proto/pull/37)) by @ChaserZ98
+- Update workflow and git-cliff config ([#35](https://github.com/ChaserZ98/chaserland-grpc-proto/pull/35)) by @ChaserZ98
+
+### <!-- 10 -->🐳 Miscellaneous Tasks
+- Update poetry to v2 and update workflows ([#34](https://github.com/ChaserZ98/chaserland-grpc-proto/pull/34)) by @ChaserZ98
+
 ## 0.2.1 - 2024-11-09
 
 ### <!-- 01 -->✨ Feature
